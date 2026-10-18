@@ -1,49 +1,35 @@
-【当前轮次】mjj 买家 / wsy 卖家 / hmk 仲裁人。
+实验3协同操作说明（当前正式轮次）
+
+一 本轮身份与合约
+A=买家 mjj：0x6A18a7821d0E8F5f1ABBA1960c4438dF6edd9622
+B=卖家 wsy：0x1f5a8566880c0D242F145B9172812eC18F50D1Ea
+C=仲裁人 hmk：0x779ED69bf966eb5b9E5F16f18E9d1a34f314Be87
+POTOS Testnet，Chain ID 60600。
+MJJToken：0x55611EB38243142583C12D4D9c4F9e4f534029b9
 当前 Escrow：0xc8B5D09F028CCfaF8cf03Eb55C31e62acef8FD52
-代币：0x55611EB38243142583C12D4D9c4F9e4f534029b9
-旧 Escrow 0x3Db9…fEC1 仅保留历史，本轮不要使用。
+旧 Escrow 0x3Db9AcACc13DcA53eA5Dc17bee9d38541e22fEC1 保留历史，本轮不要使用。
+新合约已部署；真人订单与截图仍需按步骤完成，不可把本地测试当成真人交易。
 
-实验3协同操作说明
-莫均杰 202430551184
+二 组员运行
+Node >=20.18.3，使用仓库自带 Yarn 3.2.3。
+git clone https://github.com/Mojieeee/-3.git mjj-lab3
+cd mjj-lab3
+yarn install
+yarn start
+按终端显示的网址访问 /debug（一般 http://localhost:3000/debug）。
+连接自己的 MetaMask，核对网络、合约地址和钱包身份。组员操作已有合约无需 chain/deploy。
+只能交换公开地址、源码、ABI和交易哈希，不交换私钥、助记词或钱包密码。
 
-一 当前已经完成的个人准备
-MJJToken.sol 已按原件复制，SHA-256 与交接说明一致。
-Escrow.sol 的六个函数、8 个课程测试、7 个边界测试和带本人学号的部署脚本已完成。
-原项目另有 2 个 YourContract 测试，总计 17 个测试通过。
-本地 Hardhat 内存链已走通正常成交、争议退款、到期退款；这些不是 POTOS 正式交易。
-已正式部署 MJJToken 与 Escrow，地址见 packages/hardhat/lab3-records/potos-deployment.json。本人买家轮次的交易及截图仍待完成。
+三 本人验证与部署记录
+本地验证：yarn compile、yarn hardhat:test、yarn hardhat:check-types、yarn next:check-types。
+17个测试=8个课程测试+7个边界测试+2个原始示例测试。
+部署记录在 packages/hardhat/lab3-records/potos-deployment.json，前端地址与ABI在 packages/nextjs/contracts/deployedContracts.ts。
+需自行部署时先修改 lab3.config.json 为自己的身份；本人脚本会校验账户。禁止照抄他人身份部署。
+脚本 lab3/部署.command 从终端输入临时签名，不写入项目。仅操作现有合约的组员不要运行它。
 
-二 三人先确定公开信息
-你们自行安排，不需要老师指定。建议约定 A=莫均杰，B=一位组员，C=另一位组员。
-本组轮次：hmk 买家、mjj 卖家、wsy 仲裁；mjj 买家、wsy 卖家、hmk 仲裁；wsy 买家、hmk 卖家、mjj 仲裁。
-以下流程中的 A=当前买家、B=当前卖家、C=当前仲裁人。
-每个人都用自己实验2的代币和自己的钱包部署；不要用别人的源码身份和交易冒充自己。
-大家只交换姓名、学号、钱包公开地址、合约地址、ABI/源码和交易哈希，不交换私钥、助记词或钱包密码。
-本人的预期钱包地址：0x6A18a7821d0E8F5f1ABBA1960c4438dF6edd9622。
-如果改用另一个本人账户，应先明确修改 lab3.config.json 的 expectedDeployer 并记录原因。
-
-三 本人部署前要做的事
-1. 在本机 MetaMask 恢复本人实验钱包，选择 POTOS Testnet（Chain ID 60600），确认有 POT 测试币。
-2. 本人买家轮次仲裁人 hmk 地址：0x779ED69bf966eb5b9E5F16f18E9d1a34f314Be87。请核对其本人钱包；后续合约没有更换仲裁人的接口。
-3. 双击 lab3/部署.command。仲裁人提示可直接回车使用已配置地址，核对部署账户及测试网，再亲自输入部署授权。
-   私钥输入不回显、不进命令历史、不写 .env 或文件，仅用于该终端进程；程序不会使用仓库默认测试密钥部署测试网。
-   两个部署 tags 为 TokenMJJ202430551184 和 EscrowMJJ202430551184。
-4. 部署脚本分别执行两次 yarn deploy，只部署合约，不会替你 mint 或创建订单。
-5. 成功后保存 lab3/records/3-4-token-deploy.log、3-4-escrow-deploy.log，并截取真实终端输出作为截图3-4。
-   公开部署信息在 packages/hardhat/lab3-records/potos-deployment.json；前端 deployedContracts.ts 自动更新。
-6. 新代币初始供应量为 0，owner 是新部署者；不要混用实验2旧合约 0x46b3…c123。
-7. 双击 lab3/启动前端.command，按终端显示的 Local 地址打开前端，再进入 /debug。
-   如果显示 YourContract 而没有 MJJToken/Escrow，请先确认正式部署成功及前端文件已更新。
-
-四 怎样把合约交给组员操作
-部署成功后，部署.command 会运行打包脚本，生成 lab3/实验3_莫均杰_公开共享包.zip。
-这个包通过白名单打包，不包含 .env、钱包资料或 node_modules；正式部署前生成的包只有源码，不能当成正式地址包。
-B、C 先使用自己的课程环境 clone 原 my-first-dapp 仓库，再把共享包解压合并到仓库根目录，运行 yarn install、yarn compile、yarn start。
-访问 /debug，核对链60600、A的 MJJToken 地址和 A 的 Escrow 地址，分别连接 B、C 自己的 MetaMask。
-组员只是操作 A 的合约时不要再次执行 A 的部署脚本，也不要修改或冒用 A 的学号。
-若不想合并项目：在 Remix 加载共享的 MJJToken.sol、Escrow.sol，编译后使用 Browser Extension 连接钱包，
-分别用 At Address 加载 A 的代币和 Escrow。先核对 owner()/arbiter() 和 A 分享的一致。
-每个买家部署后都要分别分享自己的合约；三份 Escrow 地址不同，切换轮次时必须检查当前操作的是哪一份。
+四 截图约定
+状态改变前先截图；订单ID以实际链上结果为准。失败若被预估拦截则没有上链哈希，如实记录。
+示例订单0/1/2仅适用于全新合约按以下顺序操作。已付款不能再补拍Created状态。
 
 五 A当买家的正常成交 按顺序操作 不要跳步
 单位：100枚=100000000000000000000；30枚=30000000000000000000。
@@ -75,17 +61,14 @@ B、C 先使用自己的课程环境 clone 原 my-first-dapp 仓库，再把共�
 A approve30枚、deposit(2)，立即 refund(2) 应失败。等待4分钟再 refund(2)，状态3且余额退回。
 保存截图3-9。真实测试网不能用 time.increase 加速；那个函数只适用于本地测试。
 
-八 轮换与交付
-第2轮 A用自己的钱包帮B做仲裁；第3轮 A帮C做卖家；其余步骤由该轮买家负责组织。
-每个人都在自己部署的合约上作为买家完成正常与争议两条路径。
-每组最终提交一份报告：三个人各填个人记录，组长合并；不要替其他成员编写真实交易经历。
-关键数据表包含三份 Escrow 地址、角色、本人代币新地址、订单0和1的所有成功交易哈希。
-截图3-1：原项目示例2个测试与Gas；截图3-2：编译与六个函数源码；截图3-3：8个课程测试全绿与Gas。
-本机验证记录可辅助写作，但日志不等于终端截图。双击 lab3/本地自检.command 可运行并手动截取终端。
-报告草稿中的“待补”必须用实际截图、公开地址和交易数据填完，再由本人复核解释后提交。
-
-可复制给组员的消息
-我们按三轮做实验3：第一轮我买、B卖、C仲裁；第二轮B买、C卖、我仲裁；第三轮C买、我卖、B仲裁。
-请先发各自的钱包公开地址并确认POTOS有测试币。每人部署自己的代币和Escrow，仲裁人填当轮的另一位同学。
-我部署后会发公开共享包和两个合约地址；你们用自己的钱包连接操作即可，不需要任何人的私钥。
-每轮依次走正常成交和争议退款，成功交易记录哈希，失败步骤保存提示。大家最终各自补齐个人记录，由组长合并报告。
+八 三轮安排与交付
+已进行的 hmk 买家轮次：hmk买家、mjj卖家、wsy仲裁。
+当前 mjj 买家轮次：mjj买家、wsy卖家、hmk仲裁。
+下一轮 wsy 买家轮次：wsy买家、hmk卖家、mjj仲裁。
+每个人在自己的Escrow上当买家，完成正常和争议流程。切换轮次需要核对对应的合约与代币。
+各人记录自己的角色与地址，不可冒用他人交易；报告主要贴自己当买家的流程截图。
+截图3-1：原示例测试与gas；3-2：编译与六个函数；3-3：必做测试全绿与gas；3-4：两次首次部署输出，含地址和交易哈希。
+截图3-5：Created状态和OrderCreated日志；3-6：未授权付款失败、付款后Paid状态及托管余额；3-7：卖家confirm失败、提前refund失败、成交状态及卖家余额；3-8：争议状态、买家仲裁失败、退款后状态及买家余额；3-9选做超期退款。
+本人可运行 lab3/本地自检.command 并手动保存真实终端截图。日志可以辅助写解释，但不能伪装成尚未执行的操作。
+截图保留原图，不编辑拼接。每个成功交易记下哈希；如有原有余额，记录交易前后变化。
+每组一份报告，各人补齐个人记录，组长合并。解释题引用实际记录，并如实填写AI使用说明。

@@ -7,11 +7,13 @@
 要求 Node.js >=20.18.3、Yarn 3（仓库附带 Yarn 3.2.3），首次运行：
 
 ```bash
+git clone https://github.com/Mojieeee/-3.git mjj-lab3
+cd mjj-lab3
 yarn install
 yarn start
 ```
 
-打开终端显示的本机网址（通常 http://localhost:3000/debug），连接 MetaMask，切换 POTOS Testnet（Chain ID 60600）。组员访问已部署合约只需启动前端，无需运行 yarn chain 或 yarn deploy，也无需把私钥交给他人。
+打开终端显示的本机网址（通常 [http://localhost:3000/debug](http://localhost:3000/debug)），连接 MetaMask，切换 POTOS Testnet（Chain ID 60600）。组员访问已部署合约只需启动前端，无需运行 yarn chain 或 yarn deploy，也无需把私钥交给他人。
 
 ## 本轮角色与链上地址
 
