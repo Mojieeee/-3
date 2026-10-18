@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-18T07:21:40.885Z",
+  "chainId": 60600,
+  "student": "莫均杰",
+  "studentId": "202430551184",
+  "token": {
+    "address": "0x55611EB38243142583C12D4D9c4F9e4f534029b9",
+    "owner": "0x6A18a7821d0E8F5f1ABBA1960c4438dF6edd9622",
+    "symbol": "MJJ202430551184",
+    "totalSupply": "0",
+    "transactionHash": "0x31d3b8c37f9fe2e56a58d1d6ff13dfa77939d73b6df824d0e4061151311c0c9e",
+    "tag": "TokenMJJ202430551184"
+  },
+  "escrow": {
+    "address": "0xc8B5D09F028CCfaF8cf03Eb55C31e62acef8FD52",
+    "arbiter": "0x779ED69bf966eb5b9E5F16f18E9d1a34f314Be87",
+    "orderCount": "0",
+    "transactionHash": "0x3b031edae4936b27da3b396f45f809d4398f1800f0d662b79b3d08d20259c7d6",
+    "tag": "EscrowMJJ202430551184"
+  }
+}

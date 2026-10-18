@@ -1,0 +1,8 @@
+{
+  "studentName": "莫均杰",
+  "studentId": "202430551184",
+  "expectedDeployer": "0x6A18a7821d0E8F5f1ABBA1960c4438dF6edd9622",
+  "arbiterAddress": "0x779ED69bf966eb5b9E5F16f18E9d1a34f314Be87",
+  "tokenTag": "TokenMJJ202430551184",
+  "escrowTag": "EscrowMJJ202430551184"
+}

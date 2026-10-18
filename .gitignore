@@ -1,0 +1,31 @@
+# dependencies
+node_modules
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# eslint
+.eslintcache
+
+# misc
+.DS_Store
+
+# IDE
+.vscode
+.idea
+
+# cli
+dist
+# Local signing credentials and generated runtime data
+.env
+.env.*
+!.env.example
+*.keystore
+keystore/
+lab3/records/
+*.zip

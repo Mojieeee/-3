@@ -1,0 +1,30 @@
+name: Validate lab 3
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+      - name: Install dependencies
+        run: yarn install --immutable
+      - name: Compile contracts
+        run: yarn compile
+      - name: Test on the in-memory Hardhat network
+        run: yarn hardhat:test
+      - name: Check Hardhat types
+        run: yarn hardhat:check-types
+      - name: Check frontend types
+        run: yarn next:check-types
